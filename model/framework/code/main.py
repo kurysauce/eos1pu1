@@ -3,7 +3,7 @@ import sys
 import pandas as pd
 import numpy as np
 import csv
-from functions import load_model, load_data_columns, preprocess_smiles, run_predictions, save_output
+from functions import load_model, load_data_columns, preprocess_smiles, run_predictions
 
 
 if __name__ == '__main__':
@@ -38,10 +38,11 @@ if __name__ == '__main__':
    output_len = len(probabilities)
    assert input_len == output_len, "Input and output lengths do not match"
 
+    
+   with open(output_file, "w", newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(["Probability", "Prediction"])  # Header
+        for prob, pred in zip(probabilities, predictions):
+            writer.writerow([prob, pred])
 
-   save_output(output_file, probabilities, include_predictions=True, predictions=predictions)
-
-
-   print("Threshold for Cardiotoxicity: 0.64\n")
-   for prob, pred in zip(probabilities, predictions):
-       print(f"Predicted DICTrank probability: {np.round(prob, 2)}, Prediction: {pred}")
+  

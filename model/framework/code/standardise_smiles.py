@@ -87,8 +87,6 @@ def standardize_jumpcp(smiles):
         dimorphite = DimorphiteDL(min_ph=7.4, max_ph=7.4, pka_precision=0)
         protonated_smiles = dimorphite.protonate(smiles_standardized)
         
-        print("protonated_smiles")
-        
         if len(protonated_smiles) > 0:
                 protonated_smile = protonated_smiles[0]
                 

@@ -47,14 +47,4 @@ def run_predictions(classifier, df, data_columns):
    return prob_test, predictions
 
 
-def save_output(output_file, outputs, include_predictions=False, predictions=None):
-   with open(output_file, "w") as f:
-       writer = csv.writer(f)
-       if include_predictions:
-           writer.writerow(["Probability", "Prediction"])
-           for p, pred in zip(outputs, predictions):
-               writer.writerow([p, pred])
-       else:
-           writer.writerow(["Probability"])
-           for o in outputs:
-               writer.writerow([o])
+
